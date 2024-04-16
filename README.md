@@ -1,5 +1,5 @@
 # Teste iCasei: Backend Júnior/Pleno
-Esta aplicação é um sistema de cadastro de contatos que mantém e sincroniza dados em duas bases de dados distintas usando mensageria (Kafka).
+Esta aplicação é um sistema de cadastro de produtos que mantém e sincroniza dados em duas bases de dados distintas usando mensageria (Kafka).
 
 ## Instruções
 - Faça um fork deste projeto para sua conta pessoal do GitHub.
