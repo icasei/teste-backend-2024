@@ -38,6 +38,9 @@ func Update(data models.Product, isAPI bool) (*models.Product, error) {
 	defer db.Disconnect()
 
 	if isAPI {
+		if err := sendMessageToKafka(data); err != nil {
+			return nil, &helpers.GenericError{Msg: err.Error(), Code: http.StatusInternalServerError}
+		}
 	}
 
 	return &product, nil
