@@ -23,8 +23,8 @@ class KarafkaApp < Karafka::App
   )
 
   routes.draw do
-    topic :example do
-      consumer ExampleConsumer
+    topic :'go-to-rails' do
+      consumer ProductConsumer
     end
   end
 end
