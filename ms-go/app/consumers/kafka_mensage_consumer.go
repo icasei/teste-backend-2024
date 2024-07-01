@@ -25,18 +25,24 @@ func main() {
 	for {
 		msg, err := r.ReadMessage(context.Background())
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Erro ao ler mensagem: %v", err)
 		}
 
 		var product models.Product
 		if err := json.Unmarshal(msg.Value, &product); err != nil {
-			log.Fatal(err)
+			log.Printf("Erro ao decodificar mensagem JSON: %v", err)
+			continue
 		}
 
 		if err := saveToMongoDB(product); err != nil {
 			log.Printf("Erro ao salvar o produto no MongoDB: %v", err)
-		} else {
-			fmt.Printf("Produto salvo no MongoDB: %+v\n", product)
+			continue
+		}
+
+		fmt.Printf("Produto salvo no MongoDB: %+v\n", product)
+
+		if err := r.CommitMessages(context.Background(), msg); err != nil {
+			log.Printf("Erro ao commitar mensagem: %v", err)
 		}
 	}
 }
