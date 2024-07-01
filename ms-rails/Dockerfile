@@ -24,4 +24,8 @@ RUN mkdir -p $INSTALL_PATH/tmp/pids
 
 RUN chmod +x run.sh
 
+RUN rails db:migrate
+
+EXPOSE 3000
+
 CMD ["./run.sh"]
