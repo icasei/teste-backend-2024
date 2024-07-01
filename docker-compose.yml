@@ -37,6 +37,14 @@ services:
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
 
+  mongodb:
+    image: mongo:latest
+    networks:
+      - broker-kafka
+    ports:
+      - 27017:27017
+
+
   ms-rails:
     build:
       context: ./ms-rails/
@@ -56,14 +64,15 @@ services:
     container_name: ms_go_app
     depends_on:
       - kafka
+      - mongodb
     networks: 
       - broker-kafka
     ports:
       - 3030:3030
 
+    restart: unless-stopped 
 
 
 networks: 
   broker-kafka:
     driver: bridge
-
