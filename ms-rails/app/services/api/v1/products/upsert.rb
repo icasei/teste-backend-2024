@@ -19,6 +19,7 @@ module Services
               product.brand       = params[:brand]        if params[:brand].present?
               product.price       = params[:price]        if params[:price].present?
               product.description = params[:description]  if params[:description].present?
+              product.stock       = params[:stock]        if params[:stock].present?
 
               product.save!
 
