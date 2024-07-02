@@ -58,6 +58,7 @@ func saveToMongoDB(product models.Product) error {
 		product,
 		options.Replace().SetUpsert(true),
 	)
+	
 	if err != nil {
 		return fmt.Errorf("falha ao realizar upsert no MongoDB: %v", err)
 	}

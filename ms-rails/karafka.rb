@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+require_relative 'app/consumers/product_consumer'
+
 class KarafkaApp < Karafka::App
   setup do |config|
     config.initial_offset = 'latest'
     config.kafka = { 'bootstrap.servers': 'kafka:29092' }
     config.client_id = 'ms-rails'
     config.consumer_persistence = !Rails.env.development?
-
 
     config.admin do |admin|
       admin.kafka["allow.auto.create.topics"] = true
